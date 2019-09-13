@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Page</title>
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+<div class="row">
+  <br>
+  <br>
+</div>
+<div class="row">
+<div class="col-md-4">
+
+</div>
+<div class="col-md-4" style="text-align:center;">
+  <h1>CGPA Estimator</h1>
+  <br>
+</div>
+</div>
+<div class="col-md-4">
+
+</div>
+<div class="row">
+<div class="col-md-2">
+
+</div>
+<div class="col-md-8">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Your Current CGPA:</label>
+        <input type="email" class="form-control" id="currGPA" placeholder="0-10">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Current total credits:</label>
+        <input type="email" class="form-control" id="currCredits" placeholder="in hours">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Expected CGPA:</label>
+        <input type="email" class="form-control" id="ExCGPA" placeholder="It can't be 10 :/">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Credits this time:</label>
+        <input type="email" class="form-control" id="PCredit" placeholder="in hours">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-2">
+
+</div>
+</div>
+<div class="row">
+  <div class="col-md-5">
+
+  </div>
+  <div class="col-md-2" style="text-align:center;">
+    <button type="button" onclick="sendRes()" class="btn btn-info">Submit</button>
+    <br>
+    <br>
+  </div>
+  <div class="col-md-5">
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+
+  </div>
+  <div class="col-md-4" style="text-align:center;">
+    <label id="reslabel" class="label label-success"></label>
+      <br>
+      <br>
+    <label id="sugg" class="label label-success"></label>
+  </div>
+  <div class="col-md-4">
+
+  </div>
+</div>
+</div>
+<br>
+<br>
+<br>
+</body>
+{{>footer}}
+<script type="text/javascript">
+  function sendRes(){
+    var cgpa = document.getElementById('currGPA').value;
+    var ccre = document.getElementById('currCredits').value;
+    var exp = document.getElementById('ExCGPA').value;
+    var cred = document.getElementById('PCredit').value;
+    var scored = cgpa*ccre;
+    var over = exp*(+ccre + +cred);
+    var need = (over - scored)/cred;
+    if(need > 10)
+    {
+      document.getElementById('reslabel').innerHTML = 'CGPA required more than 10 :D';
+      var maxGPA = (+scored + (10*cred))/(+ccre + +cred);
+      document.getElementById('sugg').innerHTML = 'Max GPA you can score is : '+maxGPA;
+    }
+    else
+      document.getElementById('reslabel').innerHTML = 'GPA required this semester is : '+need;
+  };
+</script>
+</html>
